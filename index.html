@@ -23,8 +23,8 @@
         <div class="card-grid">
             <div class="card">
                 <p>
-                    <button id="connectBleButton" class="Button"> Connection Bluetoof</button>
-                    <button id="disconnectBleButton" class="Button"> Déconnection Bluetooth</button>
+                    <button id="connectBleButton" class="Button"> Connection</button>
+                    <button id="disconnectBleButton" class="Button"> Déconnection</button>
                 </p>
                 <p class="label">Bluetoof: <strong><span id="bleState" >Déconnecté</span></strong></p>
             </div>
@@ -49,9 +49,9 @@
 			</div>
             <div class="card">
                 <h2>Déplacement</h2>
-                <button id="xaButton" class="Button">Ajuster</button>
-                <button id="xbButton" class="Button">Centrer</button>
-				<button id="xcButton" class="Button">Rechercher</button>
+                <button id="xaButton" class="Button">Lent</button>
+                <button id="xbButton" class="Button">Moyen</button>
+				<button id="xcButton" class="Button">Rapide</button>
 				<button id="xdButton" class="Button">Maxi</button>
 				<br><br>
 			<!-- </div> -->
@@ -110,7 +110,7 @@
     // Disconnect Button
     disconnectButton.addEventListener('click', disconnectDevice);
 
-    // Write to the ESP32 Button Characteristic
+    // Write to the ESP32 Buttons Characteristic
     onButton.addEventListener('click', () => writeOnCharacteristic(1));
     offButton.addEventListener('click', () => writeOnCharacteristic(0));
 	sideralButton.addEventListener('click', () => writeOnCharacteristic("2"));
