@@ -63,7 +63,7 @@
 		</div>
 	</div>
     <div class="footer">
-		<p class="label" >Réalisé par JPastro42</p>
+		
     </div>
 </body>
 <script>
@@ -92,7 +92,7 @@
     //Define BLE Device Specs
     var deviceName ='EQ3-2';
 	var bleService = '45643b27-51fc-4bf1-a402-4dd7ff428001';
-	var ledCharacteristic = '45643b28-51fc-4bf1-a402-4dd7ff428001';
+	var buttonCharacteristic = '45643b28-51fc-4bf1-a402-4dd7ff428001';	
 	var sensorCharacteristic= '45643b29-51fc-4bf1-a402-4dd7ff428001';
 
     //Global Variables to Handle Bluetooth
@@ -182,8 +182,7 @@
 
     function onDisconnected(event){
         console.log('Device Disconnected:', event.target.device.name);
-        bleStateContainer.innerHTML = "Device disconnected";
-        bleStateContainer.style.color = "#d13a30";
+        bleStateContainer.innerHTML = "Déconnecté";
 
         connectToDevice();
     }
@@ -197,18 +196,18 @@
 
     function writeOnCharacteristic(value){
         if (bleServer && bleServer.connected) {
-            bleServiceFound.getCharacteristic(ledCharacteristic)
+            bleServiceFound.getCharacteristic(buttonCharacteristic)
             .then(characteristic => {
-                console.log("Found the LED characteristic: ", characteristic.uuid);
+                console.log("Found the BUTTONcharacteristic: ", characteristic.uuid);
                 const data = new Uint8Array([value]);
                 return characteristic.writeValue(data);
             })
             .then(() => {
                 latestValueSent.innerHTML = value;
-                console.log("Value written to LEDcharacteristic:", value);
+                console.log("Value written to BUTTONcharacteristic:", value);
             })
             .catch(error => {
-                console.error("Error writing to the LED characteristic: ", error);
+                console.error("Error writing to the BUTTONcharacteristic: ", error);
             });
         } else {
             console.error ("Bluetooth is not connected. Cannot write to characteristic.")
@@ -227,7 +226,7 @@
                     })
                     .then(() => {
                         console.log("Device Disconnected");
-                        bleStateContainer.innerHTML = "Device Disconnected";
+                        bleStateContainer.innerHTML = "Déconnecté";
                         bleStateContainer.style.color = "#d13a30";
 
                     })
